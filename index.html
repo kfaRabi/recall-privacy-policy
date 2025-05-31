@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall: German Vocabulary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex-grow: 1;
+        }
+        .tagline {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #444;
+        }
+        .screenshot-gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        .screenshot-gallery img {
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex-shrink: 0;
+            width: 260px;
+        }
+        .screenshot-gallery img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+        @media (max-width: 480px) {
+             header {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Recall: German Vocabulary</h1>
+        <p>Never Forget Vocabulary Again. Learn efficiently with intelligent flashcards, grammar insights, and progress tracking.</p>
+    </header>
+
+    <div class="container">
+        <p class="tagline">Take a Glimpse into Your Learning Journey!</p>
+
+        <div class="screenshot-gallery">
+            <img src="assets/image1.png" alt="App Screenshot 1 - Dashboard and Streak">
+            <img src="assets/image2.png" alt="App Screenshot 2 - Personal Vocabulary Library">
+            <img src="assets/image3.png" alt="App Screenshot 3 - Learn with Structure and Depth">
+            <img src="assets/image4.png" alt="App Screenshot 4 - Focus on What Matters">
+            <img src="assets/image5.png" alt="App Screenshot 5 - Different Quiz Types">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Digital Omen. All rights reserved.</p>
+        <p>
+            <a href="en.html" style="color: #fff;">Privacy Policy (English)</a> | 
+            <a href="de.html" style="color: #fff;">Datenschutzerklärung (German)</a>
+        </p>
+    </footer>
+
+</body>
+</html>
