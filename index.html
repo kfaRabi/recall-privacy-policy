@@ -172,6 +172,31 @@
                 width: 180px;
             }
         }
+        .redirect-banner {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .redirect-banner p {
+            margin: 0;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        .cancel-link {
+            color: #888;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .cancel-link:hover {
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -179,6 +204,11 @@
         <h1>Recall: German Vocabulary</h1>
         <p>Never Forget Vocabulary Again. Learn efficiently with intelligent flashcards, grammar insights, and progress tracking.</p>
     </header>
+
+    <div id="redirect-banner" class="redirect-banner">
+        <p>Redirecting you to the Google Play Store in <span id="timer">5</span> seconds...</p>
+        <a id="cancel-redirect" class="cancel-link">Cancel</a>
+    </div>
 
     <div class="container">
         <p class="tagline">Take a Glimpse into Your Learning Journey!</p>
@@ -200,10 +230,10 @@
         </div>
 
         <div class="description" style="padding: 1rem; max-width: 800px; margin: 2rem auto;">
-            <p><h2>MASTER GERMAN VOCABULARY WITH RECALL</h2></p>
+            <h2>MASTER GERMAN VOCABULARY WITH RECALL</h2>
             <p>Recall is your smart German vocabulary coach — designed to help you truly remember, not just memorize. With science-backed repetition, intuitive quizzes, and motivating progress tracking, learning German has never felt this smooth or effective.</p>
             
-            <p><h3>🚀 LEARN SMARTER, REMEMBER LONGER</h3></p>
+            <h3>🚀 LEARN SMARTER, REMEMBER LONGER</h3>
             <ul>
                 <li><b>Smart Spaced Repetition:</b> Recall schedules each review at just the right time to lock it into memory</li>
                 <li><b>Quiz Variety:</b> Mix it up with meaning quizzes, reverse challenges, article selection, spelling from fragments, and even true/false questions</li>
@@ -211,7 +241,7 @@
                 <li><b>Mastery Tracking:</b> Mark mastered words and let Recall prioritize what still needs practice</li>
             </ul>
 
-            <p><h3>🎯 STAY MOTIVATED EVERY DAY</h3></p>
+            <h3>🎯 STAY MOTIVATED EVERY DAY</h3>
             <ul>
                 <li><b>Streak Tracking:</b> Build consistent habits and keep your learning streak alive</li>
                 <li><b>Visual Progress:</b> See how far you've come in each chapter and course</li>
@@ -220,7 +250,7 @@
                 <li><b>Progress Stats:</b> Get a clear view of your strengths, weaknesses, and what's improving</li>
             </ul>
 
-            <p><h3>🧠 A QUIZ SYSTEM BUILT FOR REAL RETENTION</h3></p>
+            <h3>🧠 A QUIZ SYSTEM BUILT FOR REAL RETENTION</h3>
             <ul>
                 <li><b>Tap-to-Spell:</b> Piece together German words from their meanings — an intuitive, muscle-memory-friendly way to recall spellings</li>
                 <li><b>Article Quizzes:</b> Master tricky German articles (der, die, das) with focused quiz sessions</li>
@@ -228,7 +258,7 @@
                 <li><b>Flexible Review:</b> Struggling with a word? Focus on it more until it sticks</li>
             </ul>
 
-            <p><h3>📚 STRUCTURED & FLEXIBLE LEARNING</h3></p>
+            <h3>📚 STRUCTURED & FLEXIBLE LEARNING</h3>
             <ul>
                 <li><b>Organized Decks by Level:</b> Learn from beginner to intermediate (A1 to B2), following CEFR structure</li>
                 <li><b>Chapter-Based Flow:</b> Move step-by-step through vocabulary topics for natural progression</li>
@@ -237,14 +267,14 @@
                 <li><b>Favorites & Search:</b> Save words you want to revisit, and quickly find any word in your deck</li>
             </ul>
 
-            <p><h3>📲 LEARN ANYTIME, ANYWHERE</h3></p>
+            <h3>📲 LEARN ANYTIME, ANYWHERE</h3>
             <ul>
                 <li><b>Learn Offline:</b> Download once, then study anywhere — no internet needed for regular practice</li>
                 <li><b>Sync When Needed:</b> Your progress stays on your device, but key stats (like your leaderboard score) sync securely when online</li>
                 <li><b>One-Time Deck Download:</b> Get your vocabulary decks upfront and use them forever, even without internet</li>
             </ul>
 
-            <p><h3>🎨 BEAUTIFULLY DESIGNED FOR LEARNING</h3></p>
+            <h3>🎨 BEAUTIFULLY DESIGNED FOR LEARNING</h3>
             <ul>
                 <li><b>Clean, Intuitive Interface:</b> Stay focused with a layout that puts learning first</li>
                 <li><b>Smart Flashcards:</b> Easily see articles, plurals, gender, and other grammar tips without distractions</li>
@@ -252,7 +282,7 @@
                 <li><b>Personalized Experience:</b> Customize your learning preferences and quiz settings anytime</li>
             </ul>
 
-            <p><h3>🌐 BENGALI SUPPORT FOR LEARNERS</h3></p>
+            <h3>🌐 BENGALI SUPPORT FOR LEARNERS</h3>
             <ul>
                 <li><b>Optional Bengali Translations:</b> Perfect for native Bengali speakers just starting out</li>
                 <li><b>Flexible Settings:</b> Easily turn Bengali support on or off depending on your comfort level</li>
@@ -260,7 +290,7 @@
 
             <hr>
 
-            <p><h3>✨ WHO IS RECALL FOR?</h3></p>
+            <h3>✨ WHO IS RECALL FOR?</h3>
             <ul>
                 <li>German learners at beginner to intermediate levels</li>
                 <li>Students preparing for language tests like Goethe, TestDaF, or TELC</li>
@@ -291,5 +321,40 @@
         </p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const redirectBanner = document.getElementById('redirect-banner');
+            if (redirectBanner) {
+                const timerElement = document.getElementById('timer');
+                const cancelRedirect = document.getElementById('cancel-redirect');
+                
+                let countdown = 3;
+                let timerInterval;
+
+                const startTimer = () => {
+                    timerInterval = setInterval(() => {
+                        countdown--;
+                        if(timerElement) {
+                            timerElement.textContent = countdown;
+                        }
+                        if (countdown <= 0) {
+                            clearInterval(timerInterval);
+                            window.location.href = 'https://play.google.com/store/apps/details?id=com.recall.germanvocabulary';
+                        }
+                    }, 1000);
+                };
+
+                if (cancelRedirect) {
+                    cancelRedirect.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        clearInterval(timerInterval);
+                        redirectBanner.style.display = 'none';
+                    });
+                }
+                
+                startTimer();
+            }
+        });
+    </script>
 </body>
 </html>
