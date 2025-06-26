@@ -328,7 +328,7 @@
                 const timerElement = document.getElementById('timer');
                 const cancelRedirect = document.getElementById('cancel-redirect');
                 
-                let countdown = 3;
+                let countdown = 5;
                 let timerInterval;
 
                 const startTimer = () => {
@@ -339,7 +339,14 @@
                         }
                         if (countdown <= 0) {
                             clearInterval(timerInterval);
-                            window.location.href = 'https://play.google.com/store/apps/details?id=com.recall.germanvocabulary';
+                            // The 'market://' URI scheme attempts to open the Play Store app directly on Android.
+                            window.location.href = 'market://details?id=com.recall.germanvocabulary';
+                            
+                            // We set a short timeout to redirect to the standard web URL as a fallback.
+                            // This handles cases where the user is not on Android, or the app cannot be opened.
+                            setTimeout(() => {
+                                window.location.href = 'https://play.google.com/store/apps/details?id=com.recall.germanvocabulary';
+                            }, 500);
                         }
                     }, 1000);
                 };
