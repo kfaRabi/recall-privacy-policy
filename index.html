@@ -206,7 +206,7 @@
     </header>
 
     <div id="redirect-banner" class="redirect-banner">
-        <p>Redirecting you to the Google Play Store in <span id="timer">5</span> seconds...</p>
+        <p>Redirecting you to the Google Play Store in <span id="timer">3</span> seconds...</p>
         <a id="cancel-redirect" class="cancel-link">Cancel</a>
     </div>
 
@@ -328,7 +328,7 @@
                 const timerElement = document.getElementById('timer');
                 const cancelRedirect = document.getElementById('cancel-redirect');
                 
-                let countdown = 5;
+                let countdown = 3;
                 let timerInterval;
 
                 const startTimer = () => {
@@ -339,14 +339,7 @@
                         }
                         if (countdown <= 0) {
                             clearInterval(timerInterval);
-                            // The 'market://' URI scheme attempts to open the Play Store app directly on Android.
-                            window.location.href = 'market://details?id=com.recall.germanvocabulary';
-                            
-                            // We set a short timeout to redirect to the standard web URL as a fallback.
-                            // This handles cases where the user is not on Android, or the app cannot be opened.
-                            setTimeout(() => {
-                                window.location.href = 'https://play.google.com/store/apps/details?id=com.recall.germanvocabulary';
-                            }, 500);
+                            window.location.href = 'https://play.google.com/store/apps/details?id=com.recall.germanvocabulary';
                         }
                     }, 1000);
                 };
