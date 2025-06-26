@@ -217,7 +217,7 @@
     </header>
 
     <div id="redirect-banner" class="redirect-banner">
-        <p>Redirecting you to the Google Play Store in <span id="timer">3</span> seconds...</p>
+        <p>Redirecting you to the Google Play Store in <span id="timer">5</span> seconds...</p>
         <a id="cancel-redirect" class="cancel-link">Cancel</a>
     </div>
 
@@ -225,7 +225,7 @@
         <p class="tagline">Take a Glimpse into Your Learning Journey!</p>
 
         <div style="text-align: center; margin-bottom: 2rem;">
-            <a href="https://play.google.com/store/apps/details?id=com.recall.germanvocabulary" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=com.recall.germanvocabulary" target="_blank" rel="noopener noreferrer" class="play-store-link">
                 <img src="assets/Google_Play_Store_badge_EN.svg.webp" alt="Get it on Google Play" style="height: 60px; width: auto; border-radius: 8px;">
             </a>
         </div>
@@ -318,7 +318,7 @@
         </div>
 
         <div style="text-align: center; margin: 2rem 0;">
-            <a href="https://play.google.com/store/apps/details?id=com.recall.germanvocabulary" target="_blank" rel="noopener noreferrer">
+            <a href="https://play.google.com/store/apps/details?id=com.recall.germanvocabulary" target="_blank" rel="noopener noreferrer" class="play-store-link">
                 <img src="assets/Google_Play_Store_badge_EN.svg.webp" alt="Get it on Google Play" style="height: 60px; width: auto; border-radius: 8px;">
             </a>
         </div>
@@ -335,11 +335,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const redirectBanner = document.getElementById('redirect-banner');
+            const playStoreLinks = document.querySelectorAll('.play-store-link');
+
+            playStoreLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    gtag('event', 'click_play_store', {
+                        'event_category': 'outbound',
+                        'event_label': 'Clicked Google Play Badge'
+                    });
+                });
+            });
+
             if (redirectBanner) {
                 const timerElement = document.getElementById('timer');
                 const cancelRedirect = document.getElementById('cancel-redirect');
                 
-                let countdown = 3;
+                let countdown = 5;
                 let timerInterval;
 
                 const startTimer = () => {
@@ -360,6 +371,10 @@
                         e.preventDefault();
                         clearInterval(timerInterval);
                         redirectBanner.style.display = 'none';
+                        gtag('event', 'cancel_redirect', {
+                            'event_category': 'engagement',
+                            'event_label': 'Canceled Play Store redirect'
+                        });
                     });
                 }
                 
